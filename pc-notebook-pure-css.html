@@ -9,14 +9,33 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 <meta content="ie=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta content="index, follow" name="robots">
-<link rel="shortcut icon" href="http://graffitti.com.br/images/favicon.ico">
+<link href="http://graffitti.com.br/images/favicon.ico" rel="shortcut icon">
 <meta content="website" property="og:type">
-<meta content="http://graffitti.com.br/images/facebook-foto.png" property="og:image">
+<meta content="http://graffitti.com.br/images/pc-facebook.png" property="og:image">
 <style>
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+::selection {
+	background: transparent;
+}
+::-moz-selection {
+	background: transparent;
+}
+::-webkit-selection {
+	background: transparent;
+}
+::selection {
+	background: transparent;
+}
+::-moz-selection {
+	background: transparent;
+}
+::-webkit-selection {
+	background: transparent;
 }
 body {
 	padding: 50px 0;
@@ -27,7 +46,7 @@ body {
 	background-image: -ms-radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
 	background-image: radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
 }
-.credits{
+.credits {
 	background-color: #E2E2E2;
 	border: 1px solid #ccc;
 	font-family: Arial;
@@ -35,9 +54,8 @@ body {
 	width: 300px;
 	padding: 5px;
 	margin: 5px;
-	position:absolute;
+	position: absolute;
 	font-size: 10px;
-	
 }
 .container {
 	width: 1000px;
@@ -250,7 +268,14 @@ body {
 </head>
 
 <body>
-<div class="credits"><h1>PC Notebook Pure CSS</h1><br><p>Por <a href="http://www.graffitti.com.br" title="Alexandre Graffitti" target="_blank">Alexandre Graffitti</a></p></div>
+
+<div class="credits">
+	<h1>PC Notebook Pure CSS</h1>
+	<br>
+	<p>Por
+	<a href="http://www.graffitti.com.br" target="_blank" title="Alexandre Graffitti">
+	Alexandre Graffitti</a></p>
+</div>
 <div class="container">
 	<div class="frame-screen">
 		<textarea id="txtScreen" autofocus="autofocus" class="screen">
@@ -420,6 +445,191 @@ $(window).on({
     pressedKey.removeClass('key-pressed');
   }
 });
+
+var screen = document.getElementById("txtScreen");
+var capsLock = false;
+
+function upCase(letter){
+
+	if(capsLock == true)
+		return letter.toUpperCase();
+	else
+		return letter;
+}
+
+document.getElementById("key192").onclick = function () {
+	screen.value = screen.value + "'";
+}
+document.getElementById("key49").onclick = function () {
+	screen.value = screen.value + "1";
+}
+document.getElementById("key50").onclick = function () {
+	screen.value = screen.value + "2";
+}
+document.getElementById("key51").onclick = function () {
+	screen.value = screen.value + "3";
+}
+document.getElementById("key52").onclick = function () {
+	screen.value = screen.value + "4";
+}
+document.getElementById("key53").onclick = function () {
+	screen.value = screen.value + "5";
+}
+document.getElementById("key54").onclick = function () {
+	screen.value = screen.value + "6";
+}
+document.getElementById("key55").onclick = function () {
+	screen.value = screen.value + "7";
+}
+document.getElementById("key56").onclick = function () {
+	screen.value = screen.value + "8";
+}
+document.getElementById("key57").onclick = function () {
+	screen.value = screen.value + "9";
+}
+document.getElementById("key48").onclick = function () {
+	screen.value = screen.value + "0";
+}
+document.getElementById("key189").onclick = function () {
+	screen.value = screen.value + "-";
+}
+document.getElementById("key187").onclick = function () {
+	screen.value = screen.value + "=";
+}
+document.getElementById("key8").onclick = function () {
+
+	var remove = $('textarea').val().substring(0,$('textarea').val().length-1);
+
+	$('textarea').val(remove);
+	
+}
+document.getElementById("key9").onclick = function () {
+	screen.value = screen.value + "		";
+}
+document.getElementById("key81").onclick = function () {
+	screen.value = screen.value + upCase("q");
+}
+document.getElementById("key87").onclick = function () {
+	screen.value = screen.value + upCase("w");
+}
+document.getElementById("key69").onclick = function () {
+	screen.value = screen.value + upCase("e");
+}
+document.getElementById("key82").onclick = function () {
+	screen.value = screen.value + upCase("r");
+}
+document.getElementById("key84").onclick = function () {
+	screen.value = screen.value + upCase("t");
+}
+document.getElementById("key89").onclick = function () {
+	screen.value = screen.value + upCase("y");
+}
+document.getElementById("key85").onclick = function () {
+	screen.value = screen.value + upCase("u");
+}
+document.getElementById("key73").onclick = function () {
+	screen.value = screen.value + upCase("i");
+}
+document.getElementById("key79").onclick = function () {
+	screen.value = screen.value + upCase("o");
+}
+document.getElementById("key80").onclick = function () {
+	screen.value = screen.value + upCase("p");
+}
+document.getElementById("key219").onclick = function () {
+	screen.value = screen.value + "´";
+}
+document.getElementById("key221").onclick = function () {
+	screen.value = screen.value + "[";
+}
+document.getElementById("key13").onclick = function () {
+	//screen.value = screen.value + "shift";
+}
+document.getElementById("key20").onclick = function () {
+	if(capsLock == false)
+		capsLock = true;
+	else
+		capsLock = false;
+}
+document.getElementById("key65").onclick = function () {
+	screen.value = screen.value + upCase("a");
+}
+document.getElementById("key83").onclick = function () {
+	screen.value = screen.value + upCase("s");
+}
+document.getElementById("key68").onclick = function () {
+	screen.value = screen.value + upCase("d");
+}
+document.getElementById("key70").onclick = function () {
+	screen.value = screen.value + upCase("f");
+}
+document.getElementById("key71").onclick = function () {
+	screen.value = screen.value + upCase("g");
+}
+document.getElementById("key72").onclick = function () {
+	screen.value = screen.value + upCase("h");
+}
+document.getElementById("key74").onclick = function () {
+	screen.value = screen.value + upCase("j");
+}
+document.getElementById("key75").onclick = function () {
+	screen.value = screen.value + upCase("k");
+}
+document.getElementById("key76").onclick = function () {
+	screen.value = screen.value + upCase("l");
+}
+document.getElementById("key186").onclick = function () {
+	screen.value = screen.value + upCase("ç");
+}
+document.getElementById("key222").onclick = function () {
+	screen.value = screen.value + "~";
+}
+document.getElementById("key220").onclick = function () {
+	screen.value = screen.value + "]";
+}
+document.getElementById("key16").onclick = function () {
+	//screen.value = screen.value + upCase("p");
+}
+document.getElementById("key226").onclick = function () {
+	screen.value = screen.value + "\\";
+}
+document.getElementById("key90").onclick = function () {
+	screen.value = screen.value + upCase("z");
+}
+document.getElementById("key88").onclick = function () {
+	screen.value = screen.value + upCase("x");
+}
+document.getElementById("key67").onclick = function () {
+	screen.value = screen.value + upCase("c");
+}
+document.getElementById("key86").onclick = function () {
+	screen.value = screen.value + upCase("v");
+}
+document.getElementById("key66").onclick = function () {
+	screen.value = screen.value + upCase("b");
+}
+document.getElementById("key78").onclick = function () {
+	screen.value = screen.value + upCase("n");
+}
+document.getElementById("key77").onclick = function () {
+	screen.value = screen.value + upCase("m");
+}
+document.getElementById("key188").onclick = function () {
+	screen.value = screen.value + ",";
+}
+document.getElementById("key190").onclick = function () {
+	screen.value = screen.value + ".";
+}
+document.getElementById("key191").onclick = function () {
+	screen.value = screen.value + ";";
+}
+document.getElementById("key193").onclick = function () {
+	screen.value = screen.value + "/";
+
+}
+document.getElementById("key32").onclick = function () {
+	screen.value = screen.value + " ";
+}
 
 
 </script>
