@@ -1,79 +1,638 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Pc-notebook-pure-css : Projeto de um notebook totalmente em CSS e apoio de javascript" />
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>PC Notebook Pure CSS3</title>
+<meta content="Projeto de um notebook totalmente feito em CSS com apoio de javascript para interações do teclado" name="description">
+<meta content="Alexandre Graffitti" name="author">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+<meta content="ie=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="index, follow" name="robots">
+<link href="http://graffitti.com.br/images/favicon.ico" rel="shortcut icon">
+<meta content="website" property="og:type">
+<meta content="http://graffitti.com.br/images/pc-facebook.png" property="og:image">
+<style>
+* {
+  margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+::selection {
+	background: transparent;
+}
+::-moz-selection {
+	background: transparent;
+}
+::-webkit-selection {
+	background: transparent;
+}
+::selection {
+	background: transparent;
+}
+::-moz-selection {
+	background: transparent;
+}
+::-webkit-selection {
+	background: transparent;
+}
+body {
+	padding: 50px 0;
+	background-color: #fafafa;
+	background-image: -moz-radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
+	background-image: -webkit-radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
+	background-image: -o-radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
+	background-image: -ms-radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
+	background-image: radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
+}
+.credits {
+	background-color: #E2E2E2;
+	border: 1px solid #ccc;
+	font-family: Arial;
+	border-radius: 4px;
+	width: 300px;
+	padding: 5px;
+	margin: 5px;
+	position: absolute;
+	font-size: 10px;
+}
+.container {
+	width: 1000px;
+	margin: 0 auto;
+}
+.frame-screen {
+	width: 600px;
+	height: 400px;
+	background-color: #333;
+	border: 3px solid #333;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px;
+	-webkit-transform: perspective( 600px ) rotateX( 5deg );
+	-moz-transform: perspective( 600px ) rotateX( 5deg );
+	-o-transform: perspective( 600px ) rotateX( 5deg );
+	transform: perspective( 600px ) rotateX( 5deg );
+	box-shadow: 0 0 60px 0 rgba(0,0,0, 0.7) inset;
+}
+.screen {
+	width: 100%;
+	height: 340px;
+	border-radius: 2px;
+	border: none;
+	outline: none;
+	padding: 10px;
+	resize: none;
+	background-color: #000;
+	color: #fff;
+}
+.light-controls {
+	width: 200px;
+}
+.light-controls div {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 12px;
+	box-shadow: 0 0 10px 0 #99CCFF;
+	background-color: #99CCFF;
+}
+.light-controls div:nth-child(3) {
+	-webkit-animation:light-disk 0.6s infinite step-start 0s;
+	-moz-animation:light-disk 0.6s infinite step-start 0s;
+	-o-animation:light-disk 0.6s infinite step-start 0s;
+	-ms-animation:light-disk 0.6s infinite step-start 0s;
+	animation:light-disk 0.6s infinite step-start 0s;
+}
+.frame-keyboard {
+	width: 740px;
+	height: 355px;
+	border-radius: 10px 10px 0 0;
+	background-color: #333;
+	margin: -70px auto 0;
+	padding: 10px 15px 15px;
+	-webkit-transform: perspective( 500px ) rotateX( 35deg );
+	-moz-transform: perspective( 500px ) rotateX( 35deg );
+	-o-transform: perspective( 500px ) rotateX( 35deg );
+	transform: perspective( 500px ) rotateX( 35deg );
+	box-shadow: 0 20px 50px 0 rgba(0,0,0, 0.6), inset 0 0 100px 0 rgba(0,0,0, 0.4);
+	background-image: -ms-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-image: -ms-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-image: -o-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-image: -webkit-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-repeat: repeat;
+	background-size: 2px 3px;
+}
+.frame-keyboard-front {
+	width: 910px;
+	height: 35px;
+	border-radius: 0 0 10px 10px;
+	background-color: #333;
+	margin: 2px auto;
+	-webkit-transform: perspective( 500px ) rotateX( -35deg );
+	-moz-transform: perspective( 500px ) rotateX( -35deg );
+	-o-transform: perspective( 500px ) rotateX( -35deg );
+	transform: perspective( 500px ) rotateX( -35deg );
+	background-image: -ms-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-image: -ms-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-image: -o-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-image: -webkit-linear-gradient(90deg, #333, #333 2px, #444 2px, #444 4px, #333 4px);
+	background-repeat: repeat;
+	background-size: 2px 3px;
+	box-shadow: 0 20px 35px 0 rgba(0,0,0, 0.4) inset;
+}
+.chamfer-keyboard {
+	width: 100%;
+	height: 210px;
+	border-radius: 2px;
+	margin: 15px 0 0;
+	padding: 2px 5px 5px 7px;
+	background-color: #484848;
+	box-shadow: 0 0 5px 0 #000 inset;
+}
+.key, .key:active, .key-pressed {
+	-webkit-transition: all 0.15s ease-out;
+	-moz-transition: all 0.15s ease-out;
+	-o-transition: all 0.15s ease-out;
+	transition: all 0.15s ease-out;
+}
+.key {
+	height: 35px;
+	margin: 5px 0 0;
+	display: inline-block;
+	border-radius: 4px;
+	text-decoration: none;
+	text-align: left;
+	background: #333;
+	border-top: 1px solid #333;
+	box-shadow: inset 0 0 25px #444, 0 3px 0 #222, 0 3px 3px 0 #222, 0 2px 0 #444, 0 2px 3px #333;
+	font-family: Arial;
+	font-size: 0.7em;
+	color: #fff;
+	padding: 10px 0 0 5px;
+}
+.key-small {
+	width: 28px;
+}
+.key-medium {
+	width: 46px;
+}
+.key-large {
+	width: 64px;
+}
+.key-xlarge {
+	width: 96px;
+}
+.key-space {
+	width: 346px;
+}
+.key:active, .key-pressed {
+	position: relative;
+	top: 2px;
+	box-shadow: inset 0 0 25px #333, 0 1px 0 #111, 0 0px 0 #222, 0 1px 1px #222;
+}
+.mouse {
+	width: 200px;
+	height: 88px;
+	border-radius: 6px;
+	background-color: #222;
+	margin: 5px auto;
+	border: 2px solid #111;
+	box-shadow: 0 0 60px 0 rgba(0,0,0, 0.5) inset;
+}
+.buttons {
+	background-color: #000;
+	height: 25px;
+	margin: 59px 0 0;
+	border-radius: 0 0 4px 4px;
+}
+.button-left, .button-right {
+	display: inline-block;
+	height: 25px;
+	width: 96px;
+	background-color: #111;
+	box-shadow: 0 0 30px 0 rgba(0,0,0, 0.7) inset;
+}
+.button-right {
+	border-radius: 0 0 4px;
+}
+.button-left {
+	border-radius: 0 0 0 4px;
+}
+.button-left:active, .button-right:active {
+	margin-top: 2px;
+	height: 23px;
+	box-shadow: 0 0 30px 0 rgba(0,0,0, 1.0) inset;
+}
+@-webkit-keyframes light-disk {
+   0%, 100% {
+    box-shadow: none;
+	background-color: #000;
+   } 15%, 95% {
+	box-shadow: 0 0 10px 0 #99CCFF;
+	background-color: #99CCFF ;
+   }
+}
+@-moz-keyframes light-disk{
+   0%, 100% {
+    box-shadow: none;
+	background-color: #000;
+   }
+   15%, 95% {
+	box-shadow: 0 0 10px 0 #99CCFF;
+	background-color: #99CCFF;
+   }
+}
+@-o-keyframes light-disk {
+   0%, 100% {
+    box-shadow: none;
+	background-color: #000;
+   }
+   15%, 95% {
+	box-shadow: 0 0 10px 0 #99CCFF;
+	background-color: #99CCFF;
+   }
+}
+@-ms-keyframes light-disk {
+   0%, 100% {
+    box-shadow: none;
+	background-color: #000;
+   }
+   15%, 95% {
+	box-shadow: 0 0 10px 0 #99CCFF;
+	background-color: #99CCFF;
+   }
+}
+</style>
+</head>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<body>
 
-    <title>Pc-notebook-pure-css</title>
-  </head>
+<div class="credits">
+	<h1>PC Notebook Pure CSS</h1>
+	<br>
+	<p>Por
+	<a href="http://www.graffitti.com.br" target="_blank" title="Alexandre Graffitti">
+	Alexandre Graffitti</a></p>
+</div>
+<div class="container">
+	<div class="frame-screen">
+		<textarea id="txtScreen" autofocus="autofocus" class="screen">
+C:\Users\User&gt; </textarea> </div>
+	<div class="frame-keyboard">
+		<div class="light-controls">
+			<div>
+			</div>
+			<div>
+			</div>
+			<div>
+			</div>
+		</div>
+		<div class="chamfer-keyboard">
+			<div id="key192" class="key key-small">
+				' </div>
+			<div id="key49" class="key key-medium">
+				1 </div>
+			<div id="key50" class="key key-medium">
+				2 </div>
+			<div id="key51" class="key key-medium">
+				3 </div>
+			<div id="key52" class="key key-medium">
+				4 </div>
+			<div id="key53" class="key key-medium">
+				5 </div>
+			<div id="key54" class="key key-medium">
+				6 </div>
+			<div id="key55" class="key key-medium">
+				7 </div>
+			<div id="key56" class="key key-medium">
+				8 </div>
+			<div id="key57" class="key key-medium">
+				9 </div>
+			<div id="key48" class="key key-medium">
+				0 </div>
+			<div id="key189" class="key key-medium">
+				- </div>
+			<div id="key187" class="key key-medium">
+				= </div>
+			<div id="key8" class="key key-large">
+				Backspace </div>
+			<div id="key9" class="key key-medium">
+				tab </div>
+			<div id="key81" class="key key-medium">
+				Q </div>
+			<div id="key87" class="key key-medium">
+				W </div>
+			<div id="key69" class="key key-medium">
+				E </div>
+			<div id="key82" class="key key-medium">
+				R </div>
+			<div id="key84" class="key key-medium">
+				T </div>
+			<div id="key89" class="key key-medium">
+				Y </div>
+			<div id="key85" class="key key-medium">
+				U </div>
+			<div id="key73" class="key key-medium">
+				I </div>
+			<div id="key79" class="key key-medium">
+				O </div>
+			<div id="key80" class="key key-medium">
+				P </div>
+			<div id="key219" class="key key-medium">
+				´ </div>
+			<div id="key221" class="key key-medium">
+				[ </div>
+			<div id="key13" class="key key-medium">
+				ENTER </div>
+			<div id="key20" class="key key-xlarge">
+				Fixa </div>
+			<div id="key65" class="key key-medium">
+				A </div>
+			<div id="key83" class="key key-medium">
+				S </div>
+			<div id="key68" class="key key-medium">
+				D </div>
+			<div id="key70" class="key key-medium">
+				F </div>
+			<div id="key71" class="key key-medium">
+				G </div>
+			<div id="key72" class="key key-medium">
+				H </div>
+			<div id="key74" class="key key-medium">
+				J </div>
+			<div id="key75" class="key key-medium">
+				K </div>
+			<div id="key76" class="key key-medium">
+				L </div>
+			<div id="key186" class="key key-medium">
+				Ç </div>
+			<div id="key222" class="key key-medium">
+				~ </div>
+			<div id="key220" class="key key-medium">
+				] </div>
+			<div id="key16" class="key key-medium">
+				Shift </div>
+			<div id="key226" class="key key-medium">
+				\ </div>
+			<div id="key90" class="key key-medium">
+				Z </div>
+			<div id="key88" class="key key-medium">
+				X </div>
+			<div id="key67" class="key key-medium">
+				C </div>
+			<div id="key86" class="key key-medium">
+				V </div>
+			<div id="key66" class="key key-medium">
+				B </div>
+			<div id="key78" class="key key-medium">
+				N </div>
+			<div id="key77" class="key key-medium">
+				M </div>
+			<div id="key188" class="key key-medium">
+				, </div>
+			<div id="key190" class="key key-medium">
+				. </div>
+			<div id="key191" class="key key-medium">
+				; </div>
+			<div id="key193" class="key key-medium">
+				/ </div>
+			<div class="key key-medium">
+				Shift </div>
+			<div id="key17" class="key key-medium">
+				Ctrl </div>
+			<div id="key91" class="key key-medium">
+				Win </div>
+			<div id="key18" class="key key-medium">
+				Alt </div>
+			<div id="key32" class="key key-space">
+				SPACE </div>
+			<div class="key key-medium">
+				Alt Gr </div>
+			<div id="key92" class="key key-medium">
+				Win </div>
+			<div id="key93" class="key key-medium">
+				Opt </div>
+			<div class="key key-medium">
+				Ctrl </div>
+		</div>
+		<div class="mouse">
+			<div class="buttons">
+				<div class="button-left">
+				</div>
+				<div class="button-right">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="frame-keyboard-front">
+	</div>
+</div>
 
-  <body>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(window).on({
+  'keydown': function(e){
+    var pressedKey = $('#key' + e.keyCode);
+    pressedKey.addClass('key-pressed');
+    $('#txtScreen').focus();
+    //alert(e.keyCode);
+  },
+  'keyup': function(e) {
+    var pressedKey = $('#key' + e.keyCode);
+    pressedKey.removeClass('key-pressed');
+  }
+});
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/graffitti/pc-notebook-pure-css">View on GitHub</a>
+var screen = document.getElementById("txtScreen");
+var capsLock = false;
 
-          <h1 id="project_title">Pc-notebook-pure-css</h1>
-          <h2 id="project_tagline">Projeto de um notebook totalmente em CSS e apoio de javascript</h2>
+function upCase(letter){
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/graffitti/pc-notebook-pure-css/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/graffitti/pc-notebook-pure-css/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+	if(capsLock == true)
+		return letter.toUpperCase();
+	else
+		return letter;
+}
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+document.getElementById("key192").onclick = function () {
+	screen.value = screen.value + "'";
+}
+document.getElementById("key49").onclick = function () {
+	screen.value = screen.value + "1";
+}
+document.getElementById("key50").onclick = function () {
+	screen.value = screen.value + "2";
+}
+document.getElementById("key51").onclick = function () {
+	screen.value = screen.value + "3";
+}
+document.getElementById("key52").onclick = function () {
+	screen.value = screen.value + "4";
+}
+document.getElementById("key53").onclick = function () {
+	screen.value = screen.value + "5";
+}
+document.getElementById("key54").onclick = function () {
+	screen.value = screen.value + "6";
+}
+document.getElementById("key55").onclick = function () {
+	screen.value = screen.value + "7";
+}
+document.getElementById("key56").onclick = function () {
+	screen.value = screen.value + "8";
+}
+document.getElementById("key57").onclick = function () {
+	screen.value = screen.value + "9";
+}
+document.getElementById("key48").onclick = function () {
+	screen.value = screen.value + "0";
+}
+document.getElementById("key189").onclick = function () {
+	screen.value = screen.value + "-";
+}
+document.getElementById("key187").onclick = function () {
+	screen.value = screen.value + "=";
+}
+document.getElementById("key8").onclick = function () {
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+	var remove = $('textarea').val().substring(0,$('textarea').val().length-1);
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+	$('textarea').val(remove);
+	
+}
+document.getElementById("key9").onclick = function () {
+	screen.value = screen.value + "		";
+}
+document.getElementById("key81").onclick = function () {
+	screen.value = screen.value + upCase("q");
+}
+document.getElementById("key87").onclick = function () {
+	screen.value = screen.value + upCase("w");
+}
+document.getElementById("key69").onclick = function () {
+	screen.value = screen.value + upCase("e");
+}
+document.getElementById("key82").onclick = function () {
+	screen.value = screen.value + upCase("r");
+}
+document.getElementById("key84").onclick = function () {
+	screen.value = screen.value + upCase("t");
+}
+document.getElementById("key89").onclick = function () {
+	screen.value = screen.value + upCase("y");
+}
+document.getElementById("key85").onclick = function () {
+	screen.value = screen.value + upCase("u");
+}
+document.getElementById("key73").onclick = function () {
+	screen.value = screen.value + upCase("i");
+}
+document.getElementById("key79").onclick = function () {
+	screen.value = screen.value + upCase("o");
+}
+document.getElementById("key80").onclick = function () {
+	screen.value = screen.value + upCase("p");
+}
+document.getElementById("key219").onclick = function () {
+	screen.value = screen.value + "´";
+}
+document.getElementById("key221").onclick = function () {
+	screen.value = screen.value + "[";
+}
+document.getElementById("key13").onclick = function () {
+	//screen.value = screen.value + "shift";
+}
+document.getElementById("key20").onclick = function () {
+	if(capsLock == false)
+		capsLock = true;
+	else
+		capsLock = false;
+}
+document.getElementById("key65").onclick = function () {
+	screen.value = screen.value + upCase("a");
+}
+document.getElementById("key83").onclick = function () {
+	screen.value = screen.value + upCase("s");
+}
+document.getElementById("key68").onclick = function () {
+	screen.value = screen.value + upCase("d");
+}
+document.getElementById("key70").onclick = function () {
+	screen.value = screen.value + upCase("f");
+}
+document.getElementById("key71").onclick = function () {
+	screen.value = screen.value + upCase("g");
+}
+document.getElementById("key72").onclick = function () {
+	screen.value = screen.value + upCase("h");
+}
+document.getElementById("key74").onclick = function () {
+	screen.value = screen.value + upCase("j");
+}
+document.getElementById("key75").onclick = function () {
+	screen.value = screen.value + upCase("k");
+}
+document.getElementById("key76").onclick = function () {
+	screen.value = screen.value + upCase("l");
+}
+document.getElementById("key186").onclick = function () {
+	screen.value = screen.value + upCase("ç");
+}
+document.getElementById("key222").onclick = function () {
+	screen.value = screen.value + "~";
+}
+document.getElementById("key220").onclick = function () {
+	screen.value = screen.value + "]";
+}
+document.getElementById("key16").onclick = function () {
+	//screen.value = screen.value + upCase("p");
+}
+document.getElementById("key226").onclick = function () {
+	screen.value = screen.value + "\\";
+}
+document.getElementById("key90").onclick = function () {
+	screen.value = screen.value + upCase("z");
+}
+document.getElementById("key88").onclick = function () {
+	screen.value = screen.value + upCase("x");
+}
+document.getElementById("key67").onclick = function () {
+	screen.value = screen.value + upCase("c");
+}
+document.getElementById("key86").onclick = function () {
+	screen.value = screen.value + upCase("v");
+}
+document.getElementById("key66").onclick = function () {
+	screen.value = screen.value + upCase("b");
+}
+document.getElementById("key78").onclick = function () {
+	screen.value = screen.value + upCase("n");
+}
+document.getElementById("key77").onclick = function () {
+	screen.value = screen.value + upCase("m");
+}
+document.getElementById("key188").onclick = function () {
+	screen.value = screen.value + ",";
+}
+document.getElementById("key190").onclick = function () {
+	screen.value = screen.value + ".";
+}
+document.getElementById("key191").onclick = function () {
+	screen.value = screen.value + ";";
+}
+document.getElementById("key193").onclick = function () {
+	screen.value = screen.value + "/";
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+}
+document.getElementById("key32").onclick = function () {
+	screen.value = screen.value + " ";
+}
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+</script>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Pc-notebook-pure-css maintained by <a href="https://github.com/graffitti">graffitti</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
 </html>
