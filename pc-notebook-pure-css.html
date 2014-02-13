@@ -18,10 +18,6 @@
         padding: 0;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
-        
-        /* Nao consegui clicar nas letras no chrome sem isso */
-        position: relative;
-        z-index: 1;        
     }
     ::selection {
         background: transparent;
@@ -49,6 +45,10 @@
         background-image: -o-radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
         background-image: -ms-radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
         background-image: radial-gradient(50% 50%, circle closest-corner, #fff, #c7c7c7 120%);
+    }
+    div {
+        position: relative;
+        z-index: 1;
     }
     .credits {
         background-color: #E2E2E2;
@@ -306,13 +306,15 @@
 </head>
 
 <body>
-	<a href="https://github.com/graffitti/pc-notebook-pure-css"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <a href="https://github.com/graffitti/pc-notebook-pure-css">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+    </a>
     <div class="credits">
         <h1>PC Notebook Pure CSS</h1>
         <br>
         <p>Por
             <a href="http://www.graffitti.com.br" target="_blank" title="Alexandre Graffitti">
-	Alexandre Graffitti</a>
+    Alexandre Graffitti</a>
         </p>
     </div>
     <div class="text-center">
@@ -480,7 +482,7 @@
 
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script type="text/javascript">   
+<script type="text/javascript">
 jQuery(function() {
     /*
      * http://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
@@ -488,37 +490,37 @@ jQuery(function() {
 
     jQuery.fn.putCursorAtEnd = function() {
 
-      return this.each(function() {
+        return this.each(function() {
 
-        $(this).focus()
+            $(this).focus()
 
-        // If this function exists...
-        if (this.setSelectionRange) {
-          // ... then use it (Doesn't work in IE)
+            // If this function exists...
+            if (this.setSelectionRange) {
+                // ... then use it (Doesn't work in IE)
 
-          // Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
-          var len = $(this).val().length * 2;
+                // Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
+                var len = $(this).val().length * 2;
 
-          this.setSelectionRange(len, len);
+                this.setSelectionRange(len, len);
 
-        } else {
-        // ... otherwise replace the contents with itself
-        // (Doesn't work in Google Chrome)
+            } else {
+                // ... otherwise replace the contents with itself
+                // (Doesn't work in Google Chrome)
 
-          $(this).val($(this).val());
+                $(this).val($(this).val());
 
-        }
+            }
 
-        // Scroll to the bottom, in case we're in a tall textarea
-        // (Necessary for Firefox and Google Chrome)
-        this.scrollTop = 999999;
+            // Scroll to the bottom, in case we're in a tall textarea
+            // (Necessary for Firefox and Google Chrome)
+            this.scrollTop = 999999;
 
-      });
+        });
 
     };
-    
+
     $('#txtScreen').putCursorAtEnd();
-    
+
     $(window).on({
         'keydown': function(e) {
             $('#key' + e.keyCode).addClass('key-pressed');
@@ -537,7 +539,7 @@ jQuery(function() {
         var code = parseInt(this.getAttribute("id").replace("key", ""), 10);
         switch (code) {
             case 8:
-                screen.value = screen.value.slice(0,-1);
+                screen.value = screen.value.slice(0, -1);
             case 20:
                 capsLock = !capsLock;
             default:
